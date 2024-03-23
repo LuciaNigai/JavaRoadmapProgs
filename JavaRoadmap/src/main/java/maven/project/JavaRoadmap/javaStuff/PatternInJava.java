@@ -132,6 +132,12 @@ public class PatternInJava {
 		System.out.println();
 	}
 	
+	
+//	 *******
+//	  *****
+//	   ***
+//	    *
+	
 	//version written by me
 	public static void printPattern7(int n)
 	{
@@ -169,6 +175,14 @@ public class PatternInJava {
 		 System.out.println();
 	}
 	
+//	     *
+//	    ***
+//	   *****
+//	  *******
+//	   *****
+//	    ***
+//	     *
+	
 	public static void printPattern8(int n)
 	{
 		System.out.println("Pattern 8");
@@ -200,6 +214,14 @@ public class PatternInJava {
 		System.out.println();
 	}
 	
+	
+//	*
+//	**
+//	***
+//	****
+//	***
+//	**
+//	*
 	public static void printPattern9(int n)
 	{
 		System.out.println("Pattern 9");
@@ -223,6 +245,14 @@ public class PatternInJava {
 		System.out.println();
 	}
 	
+	
+//	    *
+//	   **
+//	  ***
+//	 ****
+//	  ***
+//	   **
+//	    *
 	public static void printPattern10(int n)
 	{
 		System.out.println("Pattern 10");
@@ -256,6 +286,14 @@ public class PatternInJava {
 		
 	}
 	
+	
+//	  *******
+//	   *****
+//	    ***
+//	     *
+//	    ***
+//	   *****
+//	  *******
 	public static void printPattern11(int n)
 	{
 		System.out.println("Pattern 11");
@@ -288,6 +326,10 @@ public class PatternInJava {
 	}
 	
 	
+//	   *
+//	  * *
+//	 *   *
+//	*******
 	public static void printPattern12(int n)
 	{
 		System.out.println("Pattern 12");
@@ -313,6 +355,11 @@ public class PatternInJava {
 		}
 		System.out.println();
 	}
+	
+//	*******
+//	 *   *
+//	  * *
+//	   *
 	
 	public static void printPattern13(int n)
 	{
@@ -340,6 +387,14 @@ public class PatternInJava {
 		System.out.println();
 	}
 	
+	
+//	     *
+//	    * *
+//	   *   *
+//	  *     *
+//	   *   *
+//	    * *
+//	     *
 	public static void printPattern14(int n)
 	{
 		System.out.println("Pattern 14");
@@ -379,6 +434,12 @@ public class PatternInJava {
 		System.out.println();
 	}
 	
+	
+//	1
+//	12
+//	123
+//	1234
+//	12345
 	public static void printPattern15(int n)
 	{
 		System.out.println("Pattern 15");
@@ -392,6 +453,12 @@ public class PatternInJava {
 		}
 		System.out.println();
 	}
+	
+//	1
+//	23
+//	456
+//	78910
+//	1112131415
 	public static void printPattern16(int n)
 	{
 		System.out.println("Pattern 16");
@@ -410,7 +477,7 @@ public class PatternInJava {
 	}
 	
 	
-	//fuuuuuuuuuuuuuuuuuuuuuuuuuuuuuck    ---------------------------
+	//aaaaaaaaaaaaaaaaaaaaaaa    ---------------------------
 	public static void printPattern17(int n)
 	{
 		System.out.println("Pattern 17");
