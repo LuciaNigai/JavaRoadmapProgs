@@ -7,18 +7,14 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import maven.project.JavaRoadmap.arrayPrograms.ArrayCopy;
-import maven.project.JavaRoadmap.arrayPrograms.ElementOccurance;
-import maven.project.JavaRoadmap.arrayPrograms.ElementFrequency;
-import maven.project.JavaRoadmap.arrayPrograms.FindMinAndMax;
-import maven.project.JavaRoadmap.arrayPrograms.MissingNumber;
-import maven.project.JavaRoadmap.arrayPrograms.RemoveEvenFromArray;
-import maven.project.JavaRoadmap.arrayPrograms.ReverseArray;
-import maven.project.JavaRoadmap.arrayPrograms.RotateToLeft;
-import maven.project.JavaRoadmap.arrayPrograms.SecondMax;
-import maven.project.JavaRoadmap.arrayPrograms.MoveZerosToEnd;
+import maven.project.JavaRoadmap.problems.arrayProblems.*;
 
 class ArrayProgramsTest {
+	
+    /**
+     * Tests the {@link RemoveEvenFromArray#removeEven(int[])} method.
+     * It verifies that the method removes even numbers from the input array.
+     */
 
 	@Test
 	void testRemoveEvenTest() {
@@ -28,6 +24,10 @@ class ArrayProgramsTest {
         assertArrayEquals(expected, actual);
 	}
 	
+    /**
+     * Tests the {@link ReverseArray#reverseArray(int[])} method.
+     * It verifies that the method correctly reverses the elements of the input array.
+     */
 	@Test
 	void testRevesreArrayTest() {
 		int[] expected = new int[] {2,3,4,5};
@@ -35,6 +35,10 @@ class ArrayProgramsTest {
 		assertArrayEquals(expected, actual);
 	}
 
+    /**
+     * Tests the {@link FindMinAndMax#findMinAndMax(int[])} method.
+     * It verifies that the method correctly finds the minimum and maximum values in the input array.
+     */
 	@Test
 	void testMinMaxTest() {
 		int[] expected = new int[] {1,8};
@@ -42,6 +46,10 @@ class ArrayProgramsTest {
 		assertArrayEquals(expected, actual);
 	}
 	
+    /**
+     * Tests the {@link SecondMax#findSecondMax(int[])} method.
+     * It verifies that the method correctly finds the second maximum value in the input array.
+     */
 	@Test
 	void testSecondMaxTest() {
 		int expected = 9;
@@ -49,6 +57,10 @@ class ArrayProgramsTest {
 		assertEquals(expected, actual);
 	}
 	
+    /**
+     * Tests the {@link ArrayCopy#copyArray(int[], int[])} method.
+     * It verifies that the method correctly copies the elements from one array to another.
+     */
 	@Test
 	void testArrayCopyTest() {
 		int[] expected = new int[] {1,2,4,5};
@@ -59,6 +71,10 @@ class ArrayProgramsTest {
 		
 	}
 	
+    /**
+     * Tests the {@link ElementFrequency#getFrequency(int[])} method.
+     * It verifies that the method correctly calculates the frequency of each element in the input array.
+     */
     @Test
     void testFrequencyTest() {
         int[] arr = {1, 2, 3, 4, 5, 1, 2, 3, 4, 1};
@@ -73,13 +89,21 @@ class ArrayProgramsTest {
     }
     
     
+    /**
+     * Tests the {@link RotateToLeft#rotateArrayToLeft(int[])} method.
+     * It verifies that the method correctly rotates the elements of the input array to the left.
+     */
     @Test
-    void testTotateLeftTest() {
+    void testRotateLeftTest() {
     	int[] expected = new int[] {3,5,6,7,2,4};
     	int[] actual = RotateToLeft.rotateArrayToLeft(new int[] {4,3,5,6,7,2});
     	assertArrayEquals(expected, actual);
     }
     
+    /**
+     * Tests the {@link ElementOccurance#printArrayDuplicates(int[])} method.
+     * It verifies that the method correctly identifies and prints duplicate elements in the input array.
+     */
     @Test
     void testPrintArrayDuplicatesTest() {
         int[] array = {1, 2, 3, 4, 2, 3, 4, 5, 5, 5};
@@ -94,6 +118,11 @@ class ArrayProgramsTest {
         assertEquals(expected, actual);
     }
     
+    
+    /**
+     * Tests the {@link MoveZerosToEnd#moveZerosEnd(int[])} method.
+     * It verifies that the method correctly moves all zeros to the end of the input array while maintaining the order of non-zero elements.
+     */
     @Test
     void MoveZerosToEndTest() {
     	int[] expected = new int[] {1,4,3,0,0};
@@ -102,11 +131,30 @@ class ArrayProgramsTest {
     	assertArrayEquals(expected, actual);
     }
     
+    /**
+     * Tests the {@link MissingNumber#findMissingNumber(int[])} method.
+     * It verifies that the method correctly finds the missing number in the input array.
+     */
     @Test
     void MissingNumberTest() {
     	int expected = 5;
     	int actual = MissingNumber.findMissingNumber(new int[] {2,4,1,8,6,3,7});
     	assertEquals(expected, actual);
+    }
+    
+    /**
+     * Tests the {@link RemoveDuplicates#removeDuplicates(int[])}, {@link RemoveDuplicates#removeDuplicatesBetter(int[])} and {@link RemoveDuplicates#removeDuplicatesArrayList(int[])} methods
+     * It verifies that the methods correctly removes the duplicates from a sorted int array 
+     */
+    @Test
+    void RemoveDuplicatesTest() {
+    	int[] expected = new int[] {1,2,3,4,5};
+    	int[] actual1 = RemoveDuplicates.removeDuplicates(new int[] {1,1,2,3,3,4,5,5});
+    	int[] actual2 = RemoveDuplicates.removeDuplicatesBetter(new int[] {1,1,2,3,3,4,5,5});
+    	int[] actual3 = RemoveDuplicates.removeDuplicatesArrayList(new int[] {1,1,2,3,3,4,5,5});
+    	assertArrayEquals(expected, actual1);
+    	assertArrayEquals(expected, actual2);
+    	assertArrayEquals(expected, actual3);
     }
 
 }

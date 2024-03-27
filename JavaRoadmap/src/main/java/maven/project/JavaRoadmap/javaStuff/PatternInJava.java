@@ -1,5 +1,8 @@
 package maven.project.JavaRoadmap.javaStuff;
 
+/**
+ * This class provides methods to print various patterns in Java.
+ */
 public class PatternInJava {
 	
 //  *

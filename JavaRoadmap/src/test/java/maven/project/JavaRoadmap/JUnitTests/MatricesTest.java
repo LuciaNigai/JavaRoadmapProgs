@@ -6,14 +6,14 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import maven.project.JavaRoadmap.Matrices.GivenMatrix;
-import maven.project.JavaRoadmap.Matrices.GivenSparseMatrix;
-import maven.project.JavaRoadmap.Matrices.MatricesAddition;
-import maven.project.JavaRoadmap.Matrices.MatricesEqualityCheck;
-import maven.project.JavaRoadmap.Matrices.MatricesMultiplication;
-import maven.project.JavaRoadmap.Matrices.OddEvenElements;
-import maven.project.JavaRoadmap.Matrices.RowColSum;
-import maven.project.JavaRoadmap.Matrices.TransposeMatrix;
+import maven.project.JavaRoadmap.problems.matricesProblems.GivenMatrix;
+import maven.project.JavaRoadmap.problems.matricesProblems.GivenSparseMatrix;
+import maven.project.JavaRoadmap.problems.matricesProblems.MatricesAddition;
+import maven.project.JavaRoadmap.problems.matricesProblems.MatricesEqualityCheck;
+import maven.project.JavaRoadmap.problems.matricesProblems.MatricesMultiplication;
+import maven.project.JavaRoadmap.problems.matricesProblems.OddEvenElements;
+import maven.project.JavaRoadmap.problems.matricesProblems.RowColSum;
+import maven.project.JavaRoadmap.problems.matricesProblems.TransposeMatrix;
 
 class MatricesTest {
 	/*
