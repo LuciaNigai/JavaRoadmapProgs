@@ -1,0 +1,140 @@
+* Synchronization in Java is the capability to control the access of multiple threads to any shared resource.
+
+* Types of thread synchronization:
+	There are two types of thread synchronization mutual exclusive and inter-thread communication. 
+	1.	Mutual Exclusive -> helps keep threads from interfering with one another while sharing data.
+		- Synchronized method
+		- Synchronized block
+		- Static synchronization
+	2.	Cooperation (Inter-thread communication in java)
+
+* Synchronization is built around an internal entity known as the lock or  monitor. Every object has a lock associated with it. By convention, a thread that needs consistent 
+	access to an object's fields has to acquire the object's lock before accessing them, and then release the lock when it's done with them.
+
+* Synchronized block can be used to perform synchronization on any specific resource of the method.
+
+* Points to remmber
+	-Synchronized block is used to lock an object for any shared resource
+	- Scope of synchronized bloxk is smaller rhan the method
+	- A java synchronized blok doesn't allow more than one JVM, ro provide access constrol to a shared resource.
+	- The system performance may degrade because of the slower working of synchronized keyword
+	- Java synchronized block is more efficient than java synchronized method
+
+* -------------STATIC SYNCHRONIZATION------
+* If you wan to make any static method as synchronized, the lock will be on the class not on object.
+
+* INTER-THREAD COMMUNICATION
+* Inter-thread communication or Co-operation is all about allowing synchronized threads to communicate with each other.
+
+* Cooperation (Inter-thread communication) is a mechanism in which a thread is paused running in its critical section and another thread is allowed to enter (or lock) in the 
+	same critical section to be executed.It is implemented by following methods of Object class:
+	-  wait() -> The wait() method causes current thread to release the lock and wait until either another thread invokes the notify() method or the notifyAll() method 
+		for this object, or a specified amount of time has elapsed.(it must be called only from the synchronized section)
+		
+	- notify() -> The notify() method wakes up a single thread that is waiting on this object's monitor. If any threads are waiting on this object, one of them 
+		is chosen to be awakened. The choice is arbitrary and occurs at the discretion of the implementation.
+		
+	- notifyAll() -> Wakes up all threads that are waiting on this object's monitor.
+
+* REENTRANT MONITOR
+* Java monitors a reentrant means java thread can reuse the same monitor for different synchronized methods if method is called from the method.
+	
+* The reentrant monitor eliminates the posibility of single thread deadlocking.
+
+* Suppose you wish to access both synchronised methods in a program on a single thread, and you're using more than one synchronised method in the program. 
+	However, on a single thread, a single lock can only be acquired for one synchronised method at a time. As a result, we're employing Reentrant Monitor to solve this issue. 
+
+* Java monitors are reentrant implies a Java thread can reuse the same monitor for different synchronised methods if the method is called from the method.
+	
+* -----------Reentrant lock
+* The ReentrantLock class implements the Lock interface and ensures that methods accessing shared resources are synchronised.
+
+* Calls to the lock and unlock methods surround the code that manipulates the shared resource. This gives the current working thread a lock on the 
+	shared resource and prevents other threads from doing so.
+
+* ReentrantLock, as the name implies, allows threads to enter the lock on a resource many times. A “hold count” of one is set when the 
+	thread initially enters the lock. Before unlocking, the thread can re-enter lock mode, and the hold count is increased by one each time. The 
+	“hold count” is decremented by one for each “unlock” request, and when the “hold count” reaches 0, the resource is unlocked.
+	
+* ------ Difference between the reentrant lock and synchronized keyword
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Feature 	           |                        ReentrantLock 	                                 |                               synchronized Keyword                     |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|            	       |  Allows threads to enter into the lock on a resource more than once.    |   Provides basic synchronization, but it is quite rigid in its use.    |
+|	Rigidnes		   | When the thread first enters into the lock, a hold count is set to one. |	 A thread can take a lock only once.							      |
+|					   | Before unlocking the thread can re-enter into lock again and every time |   																      |
+|					   | hold count is incremented by one.                                       |                                                                        |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|                      | Can be made fair. Fairness property provides lock to longest waiting    | Doesn’t support fairness. Any thread can acquire lock once released and|
+| Fairness 	           |   	thread.                                                              | there is no mechanism to provide the preference.                       |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Ability to Interrupt | Provides a method called lockInterruptibly(), which can be used to      | There is no way to control a thread which is waiting to acquire the    |
+|                      | interrupt thread when it is waiting for lock. 	                         | lock for an indefinite period of time.                                 |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| TryLock 	           | Provides convenient tryLock() method, which acquires lock only if it’s  | This is not possible in case of synchronized keyword.                  |
+|                      | available or not held by any other thread. 	                         |                                                                        |
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+* --------ReentrantLock methods
+--------------------------------------------------------------------------------------------------
+|     Method             |                                     Description                        |
+---------------------------------------------------------------------------------------------------
+| lock()                 | If the shared resource is initially free, a call to the lock() method  |
+|                        | increases the hold count by one and grants the thread the lock.        |
+---------------------------------------------------------------------------------------------------
+| unlock()               | The hold is decremented by one when the unlock() method is used. The   |
+|                        | resource is released when the count approaches zero.                   |
+---------------------------------------------------------------------------------------------------
+| tryLock()              | If no other thread is holding the resource, the call to tryLock()      |
+|                        | returns true, and the hold count is increased by one. If the resource  |
+|                        | is not avaliable, the method returns false, and the thread departs     |
+|                        | rather than being blocked.                                             |
+---------------------------------------------------------------------------------------------------
+| tryLock(long timeout,  | Before quitting, the thread waits for a specific amount of time, as    |
+| TimeUnit unit)         | determined by the method's inputs, to aquire the lock on the resource  |
+---------------------------------------------------------------------------------------------------
+| lockInterruptibility() | If the resource is free, this method aquires the lock while enabling   |
+|                        | the thread to be interrupted by another thread while getting the       |
+|                        | resource. This means that if the current thread is waiting for the lock|
+|                        | and another thread asks for it, the current thread will be interrupted |
+|                        | and will return without obtaining the lock.                            |
+---------------------------------------------------------------------------------------------------
+| getHoldCount()         | This emthod returns the number of locks that are currently held on the |
+|                        | resource                                                               |
+---------------------------------------------------------------------------------------------------
+| isHeldByCurrentThread()| If the current thread has the lock on the resource, this function      |
+|                        | returns true.                                                          |
+---------------------------------------------------------------------------------------------------
+| isLocked()             | This method checks if any thread holds this lock                       |
+---------------------------------------------------------------------------------------------------
+
+* ---- Other useful methods when working with reentrantLocks 
+* The Condition interface is used in association with the Lock interface to provide a Condition Object, which a thread can use to wait for certain conditions to hold before 
+	proceeding. Here are some of its key methods:
+    - await(): Causes the current thread to wait until it is signalled or interrupted.
+    - signal(): Wakes up one waiting thread.
+    - signalAll(): Wakes up all waiting threads.
+
+* Remember, when using ReentrantLock, it’s a good practice to always immediately follow a call to lock() with a try block, and call unlock() in the associated finally clause to 
+	ensure the lock is released even if an exception is thrown in the method body.
+
+* Here is a typical usage pattern for ReentrantLock and Condition:
+---------------------------------------------------------------------
+| ReentrantLock lock = new ReentrantLock();							|
+| Condition condition = lock.newCondition();						|
+|																	|
+| lock.lock();														|
+| try {															 	|
+|    // ... method body												|
+|     while(someCondition) {										|
+|        condition.await();										 	|
+|    }																|
+|    // ... more method body										|
+| } catch (InterruptedException e) {								|
+|    Thread.currentThread().interrupt();							|
+| } finally {														|
+|    lock.unlock();													|
+| }																	|
+---------------------------------------------------------------------
+   * In this pattern, the await() method is typically called in a loop that checks the condition on which the thread should wait3. The signal() or signalAll() method is called to 
+   	wake up the waiting threads when the condition changes.

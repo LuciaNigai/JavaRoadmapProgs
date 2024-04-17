@@ -1,0 +1,38 @@
+-----------KEY POINTS TO REMEMBER------
+
+* An inner class is a class that is declared 
+	inside another class, known as the outer class. 
+	The inner class can access all members of the outer class,
+	including private data and methods.
+
+* Types of Inner Classes: 
+	- Non-static nested class (Inner Class)
+	- Static nested class
+	- Method-local Inner Class
+	- Anonymous Inner Class
+	
+* Access to Outer Class Variables: 
+	An inner class can access variables and methods of its 
+	outer class. However, a static inner class cannot 
+	access non-static members of the outer class.
+
+* Final or Effectively Final Variables: 
+	A local inner class can only access local variables 
+	that are declared final or are effectively final in 
+	its enclosing scope. An effectively final variable is 
+	one whose value does not change after it’s initialized.
+
+* this Keyword: 
+	In the context of an inner class, the this keyword 
+	refers to the current instance of the inner class. 
+	To refer to the instance of the outer class, you can 
+	use the syntax OuterClassName.this.
+	
+
+* Private Access: 
+	Inner classes can access private members of the outer 
+	class, which is beneficial for encapsulation as the 
+	outer class can keep its members private.
+	
+* Lifetime: The lifetime of the inner class is tied to the 
+	instance of the outer class.

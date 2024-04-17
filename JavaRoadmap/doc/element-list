@@ -1,6 +1,7 @@
 maven.project.JavaRoadmap
-maven.project.JavaRoadmap.Annotations
-maven.project.JavaRoadmap.DesignPatterns.Creational
+maven.project.JavaRoadmap.annotations
+maven.project.JavaRoadmap.designPatterns.creational
+maven.project.JavaRoadmap.javaIO
 maven.project.JavaRoadmap.javaStuff
 maven.project.JavaRoadmap.javaStuffOOP
 maven.project.JavaRoadmap.JUnitTests

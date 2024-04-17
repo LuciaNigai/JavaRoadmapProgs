@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import maven.project.JavaRoadmap.DesignPatterns.Creational.Singleton;
+import maven.project.JavaRoadmap.designPatterns.creational.Singleton;
 
 class DesignPatternsTest {
 	

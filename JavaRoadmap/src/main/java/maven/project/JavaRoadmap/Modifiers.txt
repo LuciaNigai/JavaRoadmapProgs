@@ -1,0 +1,18 @@
+Access Modifier   | Within Class | Within Package | Outside Package by Subclass | Outside Package 
+------------------|--------------|----------------|-----------------------------|----------------
+private           | Yes          | No             | No                          | No             
+default           | Yes          | Yes            | No                          | No             
+protected         | Yes          | Yes            | Yes                         | No             
+public            | Yes          | Yes            | Yes                         | Yes            
+
+
+final modifier :
+	* Class -> cannot be subclassed
+	* Method -> cannot be overriden in subclasses
+	* Variable -> cannot be reasigned after initialization
+
+ststic modifier: 
+	* if the variable or method is declared static it belongs to the class 
+	 (shared by all instances)
+	 
+	 

@@ -1,0 +1,33 @@
+
+* Data Structure is a way to organized data in such a way that it can be used 
+	efficiently.
+* Non-primitive data structures:
+	- linear -> The arrangement of data in a sequential manner is known as a linear data 
+		structure. The data structures used for this purpose are Arrays, Linked list, Stacks, 
+		and Queues. 
+	- non-linear  -> When one element is connected to the 'n' number of elements known as a 
+		non-linear data structure. The best example is trees and graphs. In this case, the 
+		elements are arranged in a random manner.
+
+* Basic operations performed on the data structures:
+	- Searching
+	- Sorting
+	- Insertion
+	- Updation
+	- Deletion
+	- Merge
+	- Selection
+	- Splitting
+
+* For example, a stack is an ADT (Abstract data type) which uses either arrays or linked list 
+	data structure for the implementation. Therefore, we conclude that we require some data 
+	structure to implement a particular ADT.
+
+* An ADT tells what is to be done and data structure tells how it is to be done. In other 
+	words, we can say that ADT gives us the blueprint while data structure provides the 
+	implementation part.
+
+* Algoritm is a process or set of rules required to perform calculations or some problem-solving
+	operations especially by a computer.
+
+* 

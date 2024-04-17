@@ -44,15 +44,19 @@ class Outer {
         this.text = text;
         this.number = number;
     }
-    
-    
 
+    /**
+     * accesor method for age 
+     * @return text
+     */
     public String getText() {
 		return text;
 	}
-
-
-
+    
+   /**
+    * accesor method for number
+    * @return number
+    */
 	public int getNumber() {
 		return number;
 	}

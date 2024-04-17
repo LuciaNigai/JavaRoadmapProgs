@@ -1,0 +1,105 @@
+The java.io package contains the classes required for 
+input and output operations.
+
+Stream -> is a sequence of data. Stream is composed
+of bytes.
+
+System.out: standard output stream
+System.in: standard output stream
+System.err: standard error stream
+
+Output stream -> Java application uses output stream
+to write data to a destination; it may be a file, an
+array, peripheral device or socket.
+
+Input stream -> java application uses an input stream 
+to read data from a source; it may be a file, an array,
+peripheral device or socket.
+
+OutputStream class -> is an abstract class. It is the
+superclass of all classes representing an output 
+stream of bytes.
+****check the documentation for methods of 
+    OutputStream class ********
+
+OutputStream
+├── ByteArrayOutputStream
+├── FileOutputStream
+├── FilterOutputStream
+│   ├── BufferedOutputStream
+│   ├── DataOutputStream
+│   ├── PrintStream
+├── ObjectOutputStream
+└── PipedOutputStream
+
+InputStream class -> is an abstract class. It is the
+superclass of all classes representing an input 
+stream of bytes.
+****check the documentation for methods 
+	of InoutStream class****
+	
+java.lang.Object
+   |
+   └── java.io.InputStream
+        |
+        ├── java.io.ByteArrayInputStream
+        ├── java.io.FileInputStream
+        |    |
+        |    ├── java.io.BufferedInputStream
+        |    ├── java.io.DataInputStream
+        |    ├── java.io.LineNumberInputStream
+        |    ├── java.io.PushbackInputStream
+        |    ├── java.util.zip.ZipInputStream
+        |    └── java.util.jar.JarInputStream
+        ├── java.io.FilterInputStream
+        ├── java.io.ObjectInputStream
+        ├── java.io.PipedInputStream
+        ├── java.io.SequenceInputStream
+        └── java.io.StringBufferInputStream
+
+** FileOutputStream/OutputStreamWriter
+	 If you have to write primitive values into a file
+use FileOutputStream class ->You can write bite-oriented 
+as well as character-oriented data thorugh 
+FileOutoputStream class. But, for character-oriented data,
+it is prefered to use FileWriter  of 
+OutputStreamWriter class than FileOutputStream
+
+java.lang.Object
+   |
+   └── java.io.Writer
+        |
+        └── java.io.OutputStreamWriter
+        	|
+        	└──java.io.FileWriter
+
+** 	FileInputStream/FileReader
+Java FileInputStream class obtains input bytes from a file. 
+It is used for reading byte-oriented data. You can also 
+read character-stream data. But for rading streams of 
+characters, it is recommended to use FileReader class.
+
+java.lang.Object
+   |
+   └── java.io.Reader
+        |
+        └── java.io.InputStreamReader
+             |
+             └── java.io.FileReader
+             
+   
+**	BufferedOuputStream          
+Java BufferedOuputStream class is used for buffering an output 
+stream. It internaly uses buffer to store data. It adds
+more efficiency to write data directly into a stream. 
+So it makes the performance fast.
+
+** BufferedInputStream
+Java BufferedInputStream class is used to read information
+from stream. It internally uses buffer mechanism to make 
+the performance fast.
+
+
+**	SequenceInputStream
+Java SequenceInputStream class is used to read data from 
+multiple streams.

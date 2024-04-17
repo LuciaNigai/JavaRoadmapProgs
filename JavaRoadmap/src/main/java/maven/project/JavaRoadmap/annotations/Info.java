@@ -1,4 +1,4 @@
-package maven.project.JavaRoadmap.Annotations;
+package maven.project.JavaRoadmap.annotations;
 
 import java.lang.annotation.Documented;
 

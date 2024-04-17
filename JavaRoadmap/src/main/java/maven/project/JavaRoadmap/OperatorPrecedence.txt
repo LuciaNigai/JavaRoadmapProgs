@@ -1,0 +1,14 @@
+1. Postfix operators             | expr++ expr--
+2. Unary operators               | ++expr --expr +expr -expr ~ !
+3. Multiplicative operators      | * / %
+4. Additive operators            | + -
+5. Shift operators               | << >> >>>
+6. Relational operators          | < > <= >= instanceof
+7. Equality operators            | == !=
+8. Bitwise AND                   | &
+9. Bitwise exclusive OR          | ^
+10. Bitwise inclusive OR         | |
+11. Logical AND                  | &&
+12. Logical OR                   | ||
+13. Conditional operator         | ? :
+14. Assignment and compound assignment operators | = += -= *= /= %= &= ^= |= <<= >>= >>>=

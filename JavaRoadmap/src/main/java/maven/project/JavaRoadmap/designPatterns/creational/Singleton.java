@@ -1,4 +1,4 @@
-package maven.project.JavaRoadmap.DesignPatterns.Creational;
+package maven.project.JavaRoadmap.designPatterns.creational;
 
 
 /**

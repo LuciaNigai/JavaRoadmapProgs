@@ -1,0 +1,217 @@
+* A thread in Java is the direction or path that is taken while a program is being executed. Generally, all the programs have at least one thread, known as the main thread
+
+* Threads do not allocate separate memory area so saves memory, and context-switching between the threads takes less then process.
+	
+* Advantages of threads
+	- It doesn't block the user because they are indipendent, and you can perform multiple operations at the same time.
+	- You can perform many operations together, so it saves time.
+	- Threads are indipendent, so it doesn't affect other threads if an exception occurs in single thread.
+	
+* Thread types:
+	- User thread
+	- Daemon thread
+	In summary, user threads are designed to perform the main work of the program, while daemon threads are designed to perform background tasks. The JVM will not terminate until 
+	all user threads have finished their execution, but it doesn’t wait for daemon threads to finish.
+
+* A thread in java can be created in two ways:
+	- extending java.lang.Thread class
+	- implementing Runnable interface
+
+	
+* Lifecycle of Thread in java
+	The Life Cycle of a Thread in Java refers to the state transformations of a thread that begins with its birth and ends with its death.
+	
+	When a thread instance is generated and executed by calling the start() method of the Thread class, the thread enters the runnable state. When the sleep() or
+	wait() methods of the Thread class are called, the thread enters a non-runnable mode.
+	
+	Thread returns from non-runnable state to runnable state and starts statement execution. The thread dies when it exits the run() process. 
+	
+* 4 stages in the lifecycle of a thread
+	- New -> That is, when a thread is created, it enters a new state, but the start() method on the instance has not yet been invoked.
+	- Runnable -> When a new thread's start() function is called, it enters a runnable state.
+	- Running -> Running implies that the processor (CPU) has assigned a time slot to the thread for execution. When a thread from the runnable  state is chosen for execution by 
+				the thread scheduler, it joins the running state.
+	- Blocked -> When the thread is alive, i.e., the thread class object persists, but it cannot be selected for execution by the scheduler. It is now inactive.
+	- Dead -> When a thread's run() function ends the execution of sentences, it automatically dies or enters the dead state. That is, when a thread exits the run() process, it 
+				is terminated or killed. When the stop() function is invoked, a thread will also go dead.
+
+* Calling the run() method directly, not using the start() method
+	(Thread th = new Thread(); th.run();) if we do so the run() method goes onto the current stack rather at the begining of a new call stack, meaning that 
+	the objects will be treated as normal objects and not thread objects.
+	
+* Thread priorities
+	The number of services assigned to a given thread is referred to as its priority. Any thread generated in the JVM is given a priority. The priority scale runs from 1 to 10.
+	- 1 is known as the lowest priority.
+	- 5 is known as standard priority.
+	- 10 represents the highest level of priority.
+	
+	The main thread's priority is set to 5 by default, and each child thread will have the same priority as its parent thread.
+	
+	We have the ability to adjust the priority of any thread, whether it is the main thread or a user-defined thread. It is advised to adjust the priority using the 
+	Thread class's constants, which are as follows:
+		- Thread.MIN_PRIORITY;
+    	- Thread.NORM_PRIORITY;
+    	- Thread.MAX_PRIORITY;
+    	
+* In Java, multithreading is the method of running two or more threads at the same time to maximize CPU utilization.  As a result, it is often referred to as Concurrency in Java.
+
+* A deadlock is a situation in which two or more threads are stuck waiting for each other indefinitely. When several threads need the same locks but receive them 
+	in separate orders, a deadlock occurs.
+	
+* Avoiding deadlock
+	- Avoid nested locks -> We must avoid giving locks to multiple threads,this is the main rason for a deadlock condition. It normally happens when yougive lock to multiple threads.
+	- Avoid unnecessary locks -> The lock should be given to the important threads. Giving locks to the unnecessary threads that cause the deadlock condition.
+	- Using thread join -> A dedlock usually happens when one thread is waiting for the other to finish. In this case, we can use join with maximum time that a thread will take.
+		
+		
+* THREAD CONSTRUCTORS:
+
+    Thread()-> Constructs a new Thread.
+    Thread(String name) -> Constructs a new Thread with the specified name.
+    Thread(Runnable target) -> Constructs a new Thread that will call the run() method of the specified Runnable.
+    Thread(Runnable target, String name) -> Constructs a new Thread that will call the run() method of the specified Runnable and with the specified name.
+
+* THREAD METHODS:
+
+| Method                                | Description                                                                                       |
+|---------------------------------------|---------------------------------------------------------------------------------------------------|
+| public void run()                     | Used to perform action for a thread.                                                             |
+| public void start()                   | Starts the execution of the thread. JVM calls the run() method on the thread.                     |
+| public void sleep(long miliseconds)   | Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds. |
+| public void join()                    | Waits for a thread to die.                                                                       |
+| public void join(long miliseconds)    | Waits for a thread to die for the specified milliseconds.                                         |
+| public int getPriority()              | Returns the priority of the thread.                                                              |
+| public int setPriority(int priority)  | Changes the priority of the thread.                                                              |
+| public String getName()               | Returns the name of the thread.                                                                   |
+| public void setName(String name)      | Changes the name of the thread.                                                                   |
+| public Thread currentThread()         | Returns the reference of currently executing thread.                                              |
+| public int getId()                    | Returns the id of the thread.                                                                     |
+| public Thread.State getState()        | Returns the state of the thread.                                                                  |
+| public boolean isAlive()              | Tests if the thread is alive.                                                                     |
+| public void yield()                   | Causes the currently executing thread object to temporarily pause and allow other threads to execute. |
+| public void suspend()                 | Used to suspend the thread (deprecated).                                                         |
+| public void resume()                  | Used to resume the suspended thread (deprecated).                                                |
+| public void stop()                    | Used to stop the thread (deprecated).                                                            |
+| public boolean isDaemon()             | Tests if the thread is a daemon thread.                                                           |
+| public void setDaemon(boolean b)      | Marks the thread as daemon or user thread.                                                        |
+| public void interrupt()               | Interrupts the thread.                                                                            |
+| public boolean isInterrupted()        | Tests if the thread has been interrupted.                                                         |
+| public static boolean interrupted()   | Tests if the current thread has been interrupted.                                                 |
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+* -----------------THREAD POOL-----------
+* Java thread pool represents a group of worker threads that are waiting for the job and reused many times
+
+*A thread from the thread pool is pulled out and assigned a job by the service provider. After completition of the job, the thread is contained in the thread pool again.
+
+* THREAD POOL METHODS
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Method                                      | Description                                                                                                                         				|
+|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| execute(Runnable command)                   | Executes the given task in the thread pool.                                                                                        					|
+| submit(Callable<T> task)                    | Submits a Callable task for execution and returns a Future representing the pending results of the task.                          					|
+| submit(Runnable task)                       | Submits a Runnable task for execution and returns a Future representing the pending completion of the task.                     					|
+| shutdown()                                  | Initiates an orderly shutdown of the thread pool, previously submitted tasks are executed, but no new tasks will be accepted.       				|
+| shutdownNow()                               | Attempts to stop all actively executing tasks, halts the processing of waiting tasks, and returns a list of the tasks that were awaiting execution. |
+| awaitTermination(long timeout, TimeUnit unit) | Blocks until all tasks have completed execution after a shutdown request, or the timeout occurs, or the current thread is interrupted. 			|
+| isShutdown()                                | Returns true if the thread pool has been shut down.                                                                                 				|
+| isTerminated()                              | Returns true if all tasks have completed following shut down.                                                                       				|
+| getActiveCount()                            | Returns the approximate number of threads that are actively executing tasks.                                                        				|
+| getCompletedTaskCount()                     | Returns the approximate total number of tasks that have completed execution.                                                        				|
+| getCorePoolSize()                           | Returns the core number of threads in the thread pool.                                                                             					|
+| getLargestPoolSize()                        | Returns the largest number of threads that have ever simultaneously been in the thread pool.                                        				|
+| getMaximumPoolSize()                        | Returns the maximum allowed number of threads in the thread pool.                                                                   				|
+| getPoolSize()                               | Returns the current number of threads in the thread pool.                                                                          					|
+| getTaskCount()                              | Returns the approximate total number of tasks that have been scheduled for execution.                                               				|
+| prestartAllCoreThreads()                    | Starts all core threads, causing them to idly wait for work.                                                                       					|
+| prestartCoreThread()                        | Starts a core thread, causing it to idly wait for work if it is not already running.                                                				|
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	
+* Risks in Thread pools
+	- Deadlock -> scenario where all the threads that are executing are waiting for the result from the threads that are blocked and waiting in the queue because of the non-avaliability
+		of threads for the execution.
+	- Thread leakage -> Leakage of threads occurs when a thread is being removed from a pool to execute a task but is not returning to it after the completition of the task. 
+		(for example in case of exception that is not being catched) If the same happens multiple times the thread can become empty.
+	- Resource thrashing -> A lot of time is wasted in context switching among threads when the size of the thread pool is very large. Whenever there are more threads than the optimal 
+		number may cause the starvation problem, and it leads to resource thrashing.
+	
+* KEY POINTS TO REMEMBER
+	- Do not queue tasks that are concurently waiting for the results obtained from the other tasks. It may lead to a deadlock sitution.
+	- Care must be takes whenever threads are used for the operation that is long-lived. It may result in he waiting of the thread forever and will finally lead to the leakage 
+		of the resource.
+	- The thread pool has to be ended explicitly. If it does not happen, then the programm continues to execute, and it never ends. Invoke the shutdown() method on the thread 
+		pool to terminate the executor. Note that if someone tries to send another task to the executor after shutdown, it  will throw a RejectedExecutionException.
+	- A thread pool allows to use the same used thread if the thread has finiched its execution. Thus, the time and resources used for the creation of a new thread are saved.
+		
+* ---------------------THREAD GROUPS IN JAVA------------
+* Java procides a convenient way ro group threads in a single object. In such a way, we can suspend, resume or interrupt a group of threads by single method call.
+	
+* Java thread group is implemented by java.lang.ThreadGroup class
+
+* A ThreadGroup represents a set of threads. A thread group can also include the other thread group. The thread group creates a tree in which every thread group except the initial 
+	thread group has a parent.
+*A thread is allowed to access information about its own thread group, but it cannot access the information about its thread group's parent thread group or any other thread groups.
+	
+* THREADGROUP CONSTRUCTORS AND METHODS
+-----------------------------------------------------------------------------------------------------------------
+| Constructor                                | Description                                                      |
+|--------------------------------------------|------------------------------------------------------------------|
+| ThreadGroup(String name)                   | Creates a new ThreadGroup with the specified name.               |
+| ThreadGroup(ThreadGroup parent, String name) | Creates a new ThreadGroup with the specified parent and name.  |
+-----------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Method                                     | Description                                                                                                      |
+|--------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| activeCount()                              | Returns the number of active threads in this thread group and its subgroups.                              		|
+| activeGroupCount()                         | Returns the number of active groups in this thread group and its subgroups.                               		|
+| checkAccess()                              | Checks whether the current thread has permission to modify this thread group.                              		|
+| enumerate(Thread[] list)                   | Copies into the specified array every active thread in this thread group and its subgroups.               		|
+| enumerate(Thread[] list, boolean recurse) | Copies into the specified array every active thread in this thread group and its subgroups.               		|
+| enumerate(ThreadGroup[] list)              | Copies into the specified array references to every active subgroup in this thread group and its subgroups. 		|
+| enumerate(ThreadGroup[] list, boolean recurse) | Copies into the specified array references to every active subgroup in this thread group and its subgroups. 	|
+| getParent()                                | Returns the parent of this thread group.                                                                  		|
+| getMaxPriority()                           | Returns the maximum priority of this thread group.                                                        		|
+| getName()                                  | Returns the name of this thread group.                                                                    		|
+| isDaemon()                                 | Tests if this thread group is a daemon thread group.                                                      		|
+| interrupt()                                |  Interrupts all threads in the thread group																		|
+| parentOf(ThreadGroup g)                    | Tests if the specified thread group is a subgroup of this thread group or equal to this thread group.     		|
+| setDaemon(boolean daemon)                  | Sets the daemon status of this thread group.                                                              		|
+| setMaxPriority(int pri)                    | Sets the maximum priority of this thread group.                                                           		|
+| list()                                     | Prints information about the thread group to the standard output.                                                |
+| toString()                                 | Returns a string representation of the Thread group. 															|
+| uncaughtException(Thread t, Throwable e)  | Invoked by the Java Virtual Machine when a thread in this thread group stops because of an uncaught exception.	|
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+* -------------------SHUTDOWN HOOK-----------------------
+* A special construct that facilitates the developers to add some code  that has to be run when Java Virtual Machine is shutting is known as Java shutdown hook.
+
+* The Java shutdown hook comes in very handy in the cases where one needs to perform some special cleanup work when the JVM is shutting down. 
+
+* To make a shutdown hook
+	1. We need to extend the java.lang.Thread classm and provide the code for the task onwe wants to do in the run() method when the JVM is going to shut down.
+	2. For registering the instance of the derived class as the shutdown hook, one has to invoke the method Runtime.getRuntime().addShutdownHook(Thread), 
+		whereas for removing the already registered shutdown hook, one has to invoke the removeShutdownHook(Thread) method.
+
+* Points to remember 
+	- Thre's no certanity about thee execution of the shutdown hook.In some scenarios, the shutdown hook will not execute at all.
+	- Note that when the application is terminated normally the shutdown hooks are called (all threads of the application is finished or terminated). Also, when 
+		the operating system is shut down or the user presses the ctrl + c the shutdown hooks are invoked.
+	- There can be more than one shutdown hooks, but there execution order is not guaranteed: The JVM can execute the shutdown hooks in any arbitrary order. Even 
+		concurrent execution of the shutdown hooks are also possible.
+	- Within shutdown hooks, it is not allowed to unregister or register the shutdown hooks: When the JVM initiates the shutdown sequence, one can not 
+		remove or add more any existing shutdown hooks. If one tries to do so, the IllegalStateException is thrown by the JVM.
+	- The Runtime.halt() can stop the shutdown sequence that has been started: Only the Runtime.halt(), which terminates the JVM forcefully, can stop the started 
+		shutdown sequence, which also means that invoking the System.exit() method will not work within a shutdown hook.
+
+* Interrupting a thread
+* If any thread is in sleeping or waiting state (i.e. sleep() or wait() is invoked), calling the interrupt() method on the thread, breaks out the sleeping or waiting 
+	state throwing InterruptedException. If the thread is not in the sleeping or waiting state, calling the interrupt() method performs normal behaviour and 
+	doesn't interrupt the thread but sets the interrupt flag to true.
+
+* The 3 methods provided by the Thread class for interrupting a thread
+	- public void interrupt()
+	- public static boolean interrupted()
+	- public boolean isInterrupted()
+
