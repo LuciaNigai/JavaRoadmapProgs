@@ -1,6 +1,8 @@
-package maven.project.JavaRoadmap.dsa.linearDS;
+package maven.project.JavaRoadmap.dsa.linearDS.linkedList;
 
 import java.util.NoSuchElementException;
+
+import maven.project.JavaRoadmap.dsa.linearDS.SingularNode;
 
 /**
  * Class implements circular singly linked list.
@@ -9,45 +11,13 @@ import java.util.NoSuchElementException;
  */
 public class CircularSinglyLinkedListDS {
 	
-	CircularSinglyNode head;
-	
-
-	/**
-	 * Class represents the circular singly linked list node.
-	 */
-	public static class CircularSinglyNode {
-		private int data;
-		private CircularSinglyNode next;
-
-		public CircularSinglyNode(int val) {
-			this.data = val;
-			next = null;
-		}
-
-		/**
-		 * Getter method returns node data.
-		 * @return Node data.
-		 */
-		public int getData() {
-			return this.data;
-		}
-	}
-
+	SingularNode head;
 	/**
 	 * Getter method returns list head.
 	 * @return List head.
 	 */
-	public CircularSinglyNode getHead() {
+	public SingularNode getHead() {
 		return this.head;
-	}
-
-	/**
-	 * Getter method returns next node for specified node.
-	 * @param node Current node.
-	 * @return Node next to current.
-	 */
-	public CircularSinglyNode getNext(CircularSinglyNode node) {
-		return node.next;
 	}
 
 	/**
@@ -55,18 +25,18 @@ public class CircularSinglyLinkedListDS {
 	 * @param data Node data to be inserted.
 	 */
 	public void insertNode(int data) {
-		CircularSinglyNode node = new CircularSinglyNode(data);
+		SingularNode node = new SingularNode(data);
 		if(head==null) {
 			head=node;
-			head.next=head;
+			head.setNext(head);
 		}
 		else {
-			CircularSinglyNode temp = this.head;
-			while(temp.next!=head) {
-				temp=temp.next;
+			SingularNode temp = this.head;
+			while(temp.getNext()!=head) {
+				temp=temp.getNext();
 			}
-			node.next=head;
-			temp.next=node;
+			node.setNext(head);
+			temp.setNext(node);
 		}
 	}
 	
@@ -79,13 +49,13 @@ public class CircularSinglyLinkedListDS {
 			this.insertNode(data);
 		}
 		else {
-			CircularSinglyNode node = new CircularSinglyNode(data);
-			CircularSinglyNode temp = head;
-			while(temp.next!=head) {
-				temp=temp.next;
+			SingularNode node = new SingularNode(data);
+			SingularNode temp = head;
+			while(temp.getNext()!=head) {
+				temp=temp.getNext();
 			}
-			node.next=head;
-			temp.next=node;
+			node.setNext(head);
+			temp.setNext(node);
 			head=node;
 		}
 	}
@@ -100,17 +70,17 @@ public class CircularSinglyLinkedListDS {
 			throw new NoSuchElementException("List is empty");
 		}
 		else {
-			CircularSinglyNode temp=head;
-			while(temp.next!=head && temp.getData()!=after) {
-				temp=temp.next;
+			SingularNode temp=head;
+			while(temp.getNext()!=head && temp.getData()!=after) {
+				temp=temp.getNext();
 			}
-			if(temp.next==head && temp.getData()==after) {
+			if(temp.getNext()==head && temp.getData()==after) {
 				this.insertNode(data);
 			}
-			else if(temp.next!=head && temp.getData()==after) {
-				CircularSinglyNode node = new CircularSinglyNode(data);
-				node.next=temp.next;
-				temp.next=node;
+			else if(temp.getNext()!=head && temp.getData()==after) {
+				SingularNode node = new SingularNode(data);
+				node.setNext(temp.getNext());
+				temp.setNext(node);
 			}
 			else {
 				throw new NoSuchElementException("The element was not found");
@@ -126,15 +96,15 @@ public class CircularSinglyLinkedListDS {
 		if(head==null) {
 			throw new NoSuchElementException("The list is empty");
 		}
-		else if(head.next==null) {
+		else if(head.getNext()==null) {
 			head=null;
 		}
 		else {
-			CircularSinglyNode temp = head;
-			while(temp.next.next!=head) {
-				temp=temp.next;
+			SingularNode temp = head;
+			while(temp.getNext().getNext()!=head) {
+				temp=temp.getNext();
 			}
-			temp.next=head;
+			temp.setNext(head);
 		}
 	}
 	
@@ -142,16 +112,16 @@ public class CircularSinglyLinkedListDS {
 	 * Method deletes the head of the list.
 	 */
 	public void deleteHead() {
-		if(head==null || head.next==null) {
+		if(head==null || head.getNext()==null) {
 			this.deleteNode();
 		}
 		else {
-			CircularSinglyNode temp = head;
-			while(temp.next!=head) {
-				temp=temp.next;
+			SingularNode temp = head;
+			while(temp.getNext()!=head) {
+				temp=temp.getNext();
 			}
-			temp.next=temp.next.next;
-			head=temp.next;
+			temp.setNext(temp.getNext().getNext());
+			head=temp.getNext();
 		}
 	}
 	
@@ -164,15 +134,15 @@ public class CircularSinglyLinkedListDS {
 			throw new NoSuchElementException("List is empty");
 		}
 		else {
-			CircularSinglyNode temp = head;
-			while(temp.next!=head && temp.getData()!=after) {
-				temp=temp.next;
+			SingularNode temp = head;
+			while(temp.getNext()!=head && temp.getData()!=after) {
+				temp=temp.getNext();
 			}
-			if(temp.next==head && temp.getData()==after) {
+			if(temp.getNext()==head && temp.getData()==after) {
 				this.deleteHead();
 			}
-			else if(temp.next!=head && temp.getData()==after) {
-				temp.next=temp.next.next;
+			else if(temp.getNext()!=head && temp.getData()==after) {
+				temp.setNext(temp.getNext().getNext());
 			}
 			else {
 				throw new NoSuchElementException("The element is not found");
@@ -191,9 +161,9 @@ public class CircularSinglyLinkedListDS {
 			throw new NoSuchElementException("List is empty");
 		}
 		else {
-			CircularSinglyNode temp=head;
-			while(temp.next!=head && temp.getData()!=data) {
-				temp=temp.next;
+			SingularNode temp=head;
+			while(temp.getNext()!=head && temp.getData()!=data) {
+				temp=temp.getNext();
 			}
 			if(temp.getData()==data) {
 				System.out.println("The element "+data +" was found");
@@ -213,11 +183,11 @@ public class CircularSinglyLinkedListDS {
 			throw new NoSuchElementException("The list is empty");
 		}
 		else {
-			CircularSinglyNode temp = head;
+			SingularNode temp = head;
 			System.out.print("[");
-			while(temp.next!=head) {
+			while(temp.getNext()!=head) {
 				System.out.print(temp.getData()+", ");
-				temp=temp.next;
+				temp=temp.getNext();
 			}
 			System.out.println(temp.getData()+"]");
 		}

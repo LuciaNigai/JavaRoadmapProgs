@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
-import maven.project.JavaRoadmap.dsa.linearDS.CircularSinglyLinkedListDS;
+import maven.project.JavaRoadmap.dsa.linearDS.linkedList.CircularSinglyLinkedListDS;
 
 class CircularSinglyLinkedListDSTest {
 
@@ -19,8 +19,8 @@ class CircularSinglyLinkedListDSTest {
 		
 		list.printList();
 		assertEquals(100, list.getHead().getData());
-		assertEquals(200, list.getNext(list.getHead()).getData());
-		assertEquals(100, list.getNext(list.getNext(list.getNext(list.getHead()))).getData());
+		assertEquals(200, list.getHead().getNext().getData());
+		assertEquals(100, list.getHead().getNext().getNext().getNext().getData());
 	}
 	
 	@Test
@@ -34,8 +34,8 @@ class CircularSinglyLinkedListDSTest {
 		list.printList();
 		
 		assertEquals(50, list.getHead().getData());
-		assertEquals(100, list.getNext(list.getHead()).getData());
-		assertEquals(50, list.getNext(list.getNext(list.getNext(list.getNext(list.getHead())))).getData());
+		assertEquals(100, list.getHead().getNext().getData());
+		assertEquals(50, list.getHead().getNext().getNext().getNext().getNext().getData());
 	}
 	
 	@Test
@@ -48,10 +48,10 @@ class CircularSinglyLinkedListDSTest {
 		list.insertNodeAfter(300, 400);
 		list.printList();
 		
-		assertEquals(400, list.getNext(list.getNext(list.getNext(list.getHead()))).getData());
+		assertEquals(400, list.getHead().getNext().getNext().getNext().getData());
 	
 		list.insertNodeAfter(100, 150);
-		assertEquals(150, list.getNext(list.getHead()).getData());
+		assertEquals(150, list.getHead().getNext().getData());
 		assertThrows(NoSuchElementException.class, ()->list.insertNodeAfter(22, 22));
 		
 		CircularSinglyLinkedListDS emptyList = new CircularSinglyLinkedListDS();
@@ -69,7 +69,7 @@ class CircularSinglyLinkedListDSTest {
 		list.deleteNode();
 		list.printList();
 		
-		assertEquals(100, list.getNext(list.getNext(list.getHead())).getData());
+		assertEquals(100, list.getHead().getNext().getNext().getData());
 	}
 	
 	@Test
@@ -83,7 +83,7 @@ class CircularSinglyLinkedListDSTest {
 		list.printList();
 		
 		assertEquals(200, list.getHead().getData());
-		assertEquals(200, list.getNext(list.getNext(list.getHead())).getData());
+		assertEquals(200, list.getHead().getNext().getNext().getData());
 		
 		CircularSinglyLinkedListDS emptyList = new CircularSinglyLinkedListDS();
 		assertThrows(NoSuchElementException.class, ()->emptyList.deleteHead());
@@ -99,8 +99,8 @@ class CircularSinglyLinkedListDSTest {
 		list.deleteNodeAfter(100);
 		list.printList();
 		
-		assertEquals(300, list.getNext(list.getHead()).getData());
-		assertEquals(100, list.getNext(list.getNext(list.getHead())).getData());
+		assertEquals(300, list.getHead().getNext().getData());
+		assertEquals(100, list.getHead().getNext().getNext().getData());
 		assertThrows(NoSuchElementException.class, ()->list.deleteNodeAfter(239));
 	}
 	

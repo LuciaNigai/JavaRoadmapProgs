@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import maven.project.JavaRoadmap.dsa.linearDS.SinglyLinkedListDS;
+import maven.project.JavaRoadmap.dsa.linearDS.linkedList.SinglyLinkedListDS;
 
 class SinglyLinkedListDSTest {
 
@@ -16,18 +16,18 @@ class SinglyLinkedListDSTest {
 	    // Test inserting a node into an empty lists
 	    list.insertNode(12);
 	    assertEquals(12, list.getHead().getData());
-	    assertNull(list.getNextNode(list.getHead()));
+	    assertNull(list.getHead().getNext());
 
 	    // Test inserting a node into a non-empty list
 	    list.insertNode(24);
 	    assertEquals(12, list.getHead().getData());
-	    assertNotNull(list.getNextNode(list.getHead()));
-	    assertEquals(24, list.getNextNode(list.getHead()).getData());
-	    assertNull(list.getNextNode(list.getNextNode(list.getHead())));
+	    assertNotNull(list.getHead().getNext());
+	    assertEquals(24, list.getHead().getNext().getData());
+	    assertNull(list.getHead().getNext().getNext());
 	    
 	    list.insertNode(48);
-	    assertEquals(48, list.getNextNode(list.getNextNode(list.getHead())).getData());
-	    assertNull(list.getNextNode(list.getNextNode(list.getNextNode(list.getHead()))));
+	    assertEquals(48, list.getHead().getNext().getNext().getData());
+	    assertNull(list.getHead().getNext().getNext().getNext());
 	    list.printList();
 	}
 	
@@ -38,9 +38,9 @@ class SinglyLinkedListDSTest {
 		list.insertNode(24);
 		list.insertNodeBegin(6);
 		assertEquals(6, list.getHead().getData());
-		assertEquals(12, list.getNextNode(list.getHead()).getData());
-		assertEquals(24, list.getNextNode(list.getNextNode(list.getHead())).getData());
-		assertNull(list.getNextNode(list.getNextNode(list.getNextNode(list.getHead()))));
+		assertEquals(12, list.getHead().getNext().getData());
+		assertEquals(24, list.getHead().getNext().getNext().getData());
+		assertNull(list.getHead().getNext().getNext().getNext());
 		list.printList();
 	}
 	
@@ -50,9 +50,9 @@ class SinglyLinkedListDSTest {
 		list.insertNode(12);
 		list.insertNode(24);
 		list.insertNodeAfter(100,12);
-		assertEquals(100, list.getNextNode(list.getHead()).getData());
-		assertEquals(24, list.getNextNode(list.getNextNode(list.getHead())).getData());
-		assertNull(list.getNextNode(list.getNextNode(list.getNextNode(list.getHead()))));
+		assertEquals(100, list.getHead().getNext().getData());
+		assertEquals(24, list.getHead().getNext().getNext().getData());
+		assertNull(list.getHead().getNext().getNext().getNext());
 		list.printList();
 	}
 	
@@ -71,8 +71,8 @@ class SinglyLinkedListDSTest {
 		list.insertNode(24);
 		list.insertNode(48);
 		list.deleteNode();
-		assertEquals(24, list.getNextNode(list.getHead()).getData());
-		assertNull(list.getNextNode(list.getNextNode(list.getHead())));
+		assertEquals(24, list.getHead().getNext().getData());
+		assertNull(list.getHead().getNext().getNext());		
 		list.printList();
 	}
 	
@@ -84,8 +84,8 @@ class SinglyLinkedListDSTest {
 		list.insertNode(48);
 		list.deleteNodeHead();
 		assertEquals(24, list.getHead().getData());
-		assertEquals(48, list.getNextNode(list.getHead()).getData());
-		assertNull(list.getNextNode(list.getNextNode(list.getHead())));
+		assertEquals(48, list.getHead().getNext().getData());
+		assertNull(list.getHead().getNext().getNext());
 		list.printList();
 	}
 	
@@ -96,8 +96,8 @@ class SinglyLinkedListDSTest {
 		list.insertNode(24);
 		list.insertNode(48);
 		list.deleteNodeAfter(12);
-		assertEquals(48, list.getNextNode(list.getHead()).getData());
-		assertNull(list.getNextNode(list.getNextNode(list.getHead())));
+		assertEquals(48, list.getHead().getNext().getData());
+		assertNull(list.getHead().getNext().getNext());
 		list.printList();
 	}
 	

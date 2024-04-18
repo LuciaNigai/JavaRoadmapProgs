@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
-import maven.project.JavaRoadmap.dsa.linearDS.DoublyLinkedListDS;
+import maven.project.JavaRoadmap.dsa.linearDS.linkedList.DoublyLinkedListDS;
 
 class DoublyLinkedListDSTest {
 
@@ -22,8 +22,8 @@ class DoublyLinkedListDSTest {
 		
 		assertEquals(12, list.getHead().getData());
 		assertEquals(36, list.getTail().getData());
-		assertEquals(24, list.getNext(list.getHead()).getData());
-		assertEquals(24, list.getPrevious(list.getTail()).getData());
+		assertEquals(24, list.getHead().getNext().getData());
+		assertEquals(24, list.getTail().getPrevious().getData());
 	}
 	
 	@Test
@@ -38,8 +38,8 @@ class DoublyLinkedListDSTest {
 		list.printList();
 		
 		assertEquals(6, list.getHead().getData());
-		assertEquals(12, list.getNext(list.getHead()).getData());
-		assertEquals(12, list.getPrevious(list.getPrevious(list.getTail())).getData());
+		assertEquals(12, list.getHead().getNext().getData());
+		assertEquals(12, list.getTail().getPrevious().getPrevious().getData());
 	}
 	
 	@Test
@@ -54,8 +54,8 @@ class DoublyLinkedListDSTest {
 		System.out.print("Test 3 ");
 		list.printList();
 		
-		assertEquals(100, list.getNext(list.getHead()).getData());
-		assertEquals(100, list.getPrevious(list.getPrevious(list.getTail())).getData());
+		assertEquals(100, list.getHead().getNext().getData());
+		assertEquals(100, list.getTail().getPrevious().getPrevious().getData());
 	}
 	
 	@Test
@@ -71,7 +71,7 @@ class DoublyLinkedListDSTest {
 		list.printList();
 		
 		assertEquals(24, list.getTail().getData());
-		assertEquals(24, list.getNext(list.getHead()).getData());
+		assertEquals(24, list.getHead().getNext().getData());
 	}
 	
 	@Test
@@ -87,7 +87,7 @@ class DoublyLinkedListDSTest {
 		list.printList();
 		
 		assertEquals(24, list.getHead().getData());
-		assertEquals(24, list.getPrevious(list.getTail()).getData());
+		assertEquals(24, list.getTail().getPrevious().getData());
 	}
 	
 	@Test
@@ -103,7 +103,7 @@ class DoublyLinkedListDSTest {
 		list.printList();
 	
 		assertEquals(24, list.getTail().getData());
-		assertEquals(24, list.getNext(list.getHead()).getData());
+		assertEquals(24, list.getHead().getNext().getData());
 	}
 	
 	@Test

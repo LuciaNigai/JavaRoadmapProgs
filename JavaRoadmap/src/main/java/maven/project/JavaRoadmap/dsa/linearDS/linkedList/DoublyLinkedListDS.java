@@ -1,6 +1,8 @@
-package maven.project.JavaRoadmap.dsa.linearDS;
+package maven.project.JavaRoadmap.dsa.linearDS.linkedList;
 
 import java.util.NoSuchElementException;
+
+import maven.project.JavaRoadmap.dsa.linearDS.DoubleNode;
 
 /**
  * Class that implements the doubly liked list.
@@ -11,31 +13,6 @@ public class DoublyLinkedListDS {
 
 	private DoubleNode head;
 	private DoubleNode tail;
-	
-
-	/**
-	 * Class representing the doubly linked list node.
-	 */
-	public static class DoubleNode {
-		private int data;
-		private DoubleNode previous;
-		private DoubleNode next;
-
-		public DoubleNode(int data) {
-			this.data = data;
-			previous = null;
-			next = null;
-		}
-
-		/**
-		 * Data accessor method.
-		 * @return node data.
-		 */
-		public int getData() {
-			return data;
-		}
-	}
-
 	/**
 	 * Head accessor method.
 	 * @return list head.
@@ -52,23 +29,6 @@ public class DoublyLinkedListDS {
 		return tail;
 	}
 
-	/**
-	 *Accessor method returns next node to the current.
-	 * @param node Curent node.
-	 * @return Next to current node.
-	 */
-	public DoubleNode getNext(DoubleNode node) {
-		return node.next;
-	}
-
-	/**
-	 * Accessor method returns the previous to current node.
-	 * @param node Current node.
-	 * @return Previous node.
-	 */
-	public DoubleNode getPrevious(DoubleNode node) {
-		return node.previous;
-	}
 
 	/**
 	 * Method inserts a node to the end of the list.
@@ -80,9 +40,12 @@ public class DoublyLinkedListDS {
 			head = newNode;
 			tail = newNode;
 		} else {
-			tail.next = newNode;
-			newNode.previous = tail;
-			newNode.next = null;
+//			tail.next = newNode;
+			tail.setNext(newNode);
+//			newNode.previous = tail;
+			newNode.setPrevious(tail);
+//			newNode.next = null;
+			newNode.setNext(null);
 			tail = newNode;
 		}
 	}
@@ -96,9 +59,12 @@ public class DoublyLinkedListDS {
 		if (head == null) {
 			this.insertDoubleNode(data);
 		} else {
-			newNode.next = head;
-			head.previous = newNode;
-			newNode.previous = null;
+//			newNode.next = head;
+			newNode.setNext(head);
+//			head.previous = newNode;
+			head.setPrevious(newNode);
+//			newNode.previous = null;
+			newNode.setPrevious(null);
 			head = newNode;
 		}
 	}
@@ -113,8 +79,9 @@ public class DoublyLinkedListDS {
 			throw new NoSuchElementException("List is empty");
 		} else {
 			DoubleNode temp = head;
-			while (temp != null && temp.data != dataAfter) {
-				temp = temp.next;
+			while (temp != null && temp.getData() != dataAfter) {
+//				temp = temp.next;
+				temp=temp.getNext();
 			}
 			if (temp == null) {
 				throw new NoSuchElementException("The element wa snot found");
@@ -123,10 +90,14 @@ public class DoublyLinkedListDS {
 					insertDoubleNode(data);
 				} else {
 					DoubleNode node = new DoubleNode(data);
-					node.next = temp.next;
-					node.previous = temp;
-					temp.next.previous = node;
-					temp.next = node;
+//					node.next = temp.next;
+					node.setNext(temp.getNext());
+//					node.previous = temp;
+					node.setPrevious(temp);
+//					temp.next.previous = node;
+					node.getNext().setPrevious(node);
+//					temp.next = node;
+					temp.setNext(node);
 				}
 			}
 		}
@@ -142,8 +113,10 @@ public class DoublyLinkedListDS {
 		if (tail == head) {
 			head = tail = null;
 		} else {
-			tail = tail.previous;
-			tail.next = null;
+//			tail = tail.previous;
+			tail=tail.getPrevious();
+//			tail.next = null;
+			tail.setNext(null);
 		}
 	}
 
@@ -154,12 +127,14 @@ public class DoublyLinkedListDS {
 		if (head == null) {
 			throw new NoSuchElementException("The list is empty");
 		} else {
-			if (head.next == null) {
+			if (head.getNext() == null) {
 				head = tail = null;
 			} else {
-				DoubleNode temp = head.next;
+//				DoubleNode temp = head.next;
+				DoubleNode temp = head.getNext();
 				head = temp;
-				head.previous = null;
+//				head.previous = null;
+				head.setPrevious(null);
 			}
 		}
 	}
@@ -173,16 +148,19 @@ public class DoublyLinkedListDS {
 			throw new NoSuchElementException("This list is empty");
 		} else {
 			DoubleNode temp = this.head;
-			while (temp != null && temp.data != data) {
-				temp = temp.next;
+			while (temp != null && temp.getData() != data) {
+//				temp = temp.next;
+				temp=temp.getNext();
 			}
 			if (temp == null) {
 				throw new NoSuchElementException("The element is not found");
-			} else if (temp.next == tail) {
+			} else if (temp.getNext() == tail) {
 				this.deleteDoubleNode();
 			} else {
-				temp.next.next.previous = temp;
-				temp.next = temp.next.next;
+//				temp.next.next.previous = temp;
+				temp.getNext().getNext().setPrevious(temp);
+//				temp.next = temp.next.next;
+				temp.setNext(temp.getNext().getNext());
 			}
 		}
 	}
@@ -199,8 +177,9 @@ public class DoublyLinkedListDS {
 		}
 		else {
 			DoubleNode temp = head;
-			while(temp!=null && temp.data!=data) {
-				temp=temp.next;
+			while(temp!=null && temp.getData()!=data) {
+//				temp=temp.next;
+				temp=temp.getNext();
 			}
 			if(temp==null) {
 				throw new NoSuchElementException("The element was not found");
@@ -222,7 +201,8 @@ public class DoublyLinkedListDS {
 		System.out.print("[");
 		while (temp != tail) {
 			System.out.print(temp.getData() + ", ");
-			temp = temp.next;
+//			temp = temp.next;
+			temp=temp.getNext();
 		}
 		System.out.println(temp.getData() + "]");
 	}
@@ -238,7 +218,8 @@ public class DoublyLinkedListDS {
 			System.out.print("[");
 			while (temp != head) {
 				System.out.print(temp.getData() + ", ");
-				temp = temp.previous;
+//				temp = temp.previous;
+				temp=temp.getPrevious();
 			}
 			System.out.println(temp.getData() + "]");
 		}

@@ -1,4 +1,6 @@
-package maven.project.JavaRoadmap.dsa.linearDS;
+package maven.project.JavaRoadmap.dsa.linearDS.linkedList;
+
+import maven.project.JavaRoadmap.dsa.linearDS.SingularNode;
 
 /**
  * Class implementation of the singly linked list.
@@ -8,32 +10,11 @@ package maven.project.JavaRoadmap.dsa.linearDS;
  */
 public class SinglyLinkedListDS {
 // We always save the link to the head of the list
-	private Node head;
+	private SingularNode head;
 
-	/**
-	 * Class that represents a node of the list, stores data and the link to the
-	 * next node.
-	 */
-	public static class Node {
-		private int data;
-		private Node nextNode;
 
-		public Node(int val) {
-			this.data = val;
-			nextNode = null;
-		}
-
-		public int getData() {
-			return this.data;
-		}
-	}
-
-	public Node getHead() {
+	public SingularNode getHead() {
 		return this.head;
-	}
-
-	public Node getNextNode(Node node) {
-		return node.nextNode;
 	}
 //												INSERTION TO THE LIST (END, BEGINING, AFTER SPECIFIED ELEMENT)
 
@@ -45,17 +26,21 @@ public class SinglyLinkedListDS {
 	 * @return The list with the newly inserted node.
 	 */
 	public SinglyLinkedListDS insertNode(int data) {
-		Node node = new Node(data);
-		node.nextNode = null;
+		SingularNode node = new SingularNode(data);
+//		node.nextNode = null;
+		node.setNext(null);
 
 		if (head == null) {
 			this.head = node;
 		} else {
-			Node last = this.head;
-			while (last.nextNode != null) {
-				last = last.nextNode;
+			SingularNode last = this.head;
+//			while (last.nextNode != null) {
+			while(last.getNext()!=null) {
+//				last = last.nextNode;
+				last=last.getNext();
 			}
-			last.nextNode = node;
+//			last.nextNode = node;
+			last.setNext(node);
 		}
 
 		return this;
@@ -69,11 +54,12 @@ public class SinglyLinkedListDS {
 	 * @return The ist with the new head inserted.
 	 */
 	public SinglyLinkedListDS insertNodeBegin(int data) {
-		Node node = new Node(data);
+		SingularNode node = new SingularNode(data);
 		if (head == null) {
 			this.head = node;
 		} else {
-			node.nextNode = head;
+//			node.nextNode = head;
+			node.setNext(head);
 			head = node;
 		}
 		return this;
@@ -88,19 +74,22 @@ public class SinglyLinkedListDS {
 	 * @return The list with inserted element.
 	 */
 	public SinglyLinkedListDS insertNodeAfter(int data, int dataAfter) {
-		Node node = new Node(data);
+		SingularNode node = new SingularNode(data);
 		if (head == null) {
 			this.head = node;
 		} else {
-			Node temp = this.head;
-			while (temp != null && temp.data != dataAfter) {
-				temp = temp.nextNode;
+			SingularNode temp = this.head;
+			while (temp != null && temp.getData() != dataAfter) {
+//				temp = temp.nextNode;
+				temp=temp.getNext();
 			}
 			if (temp == null) {
 				throw new IllegalArgumentException("Node with data " + dataAfter + " not found");
 			}
-			node.nextNode = temp.nextNode;
-			temp.nextNode = node;
+//			node.nextNode = temp.nextNode;
+			node.setNext(temp.getNext());
+//			temp.nextNode = node;
+			temp.setNext(node);
 		}
 		return this;
 	}
@@ -116,11 +105,13 @@ public class SinglyLinkedListDS {
 		if (this.head == null) {
 			throw new IllegalArgumentException("The list is empty");
 		} else {
-			Node temp = this.head;
-			while (temp.nextNode.nextNode != null) {
-				temp = temp.nextNode;
+			SingularNode temp = this.head;
+			while (temp.getNext().getNext() != null) {
+//				temp = temp.nextNode;
+				temp=temp.getNext();
 			}
-			temp.nextNode = null;
+//			temp.nextNode = null;
+			temp.setNext(null);
 		}
 		return this;
 	}
@@ -134,7 +125,8 @@ public class SinglyLinkedListDS {
 		if (this.head == null) {
 			throw new IllegalArgumentException("The list is empty");
 		} else {
-			this.head = this.head.nextNode;
+//			this.head = this.head.nextNode;
+			this.head=this.head.getNext();
 		}
 		return this;
 	}
@@ -149,14 +141,16 @@ public class SinglyLinkedListDS {
 		if (this.head == null) {
 			throw new IllegalArgumentException("The list is empty");
 		} else {
-			Node temp = this.head;
-			while (temp != null && temp.data != beforeData) {
-				temp = temp.nextNode;
+			SingularNode temp = this.head;
+			while (temp != null && temp.getData() != beforeData) {
+//				temp = temp.nextNode;
+				temp=temp.getNext();
 			}
 			if (temp == null) {
 				throw new IllegalArgumentException("Node with data " + beforeData + " not found");
 			}
-			temp.nextNode = temp.nextNode.nextNode;
+//			temp.nextNode = temp.nextNode.nextNode;
+			temp.setNext(temp.getNext().getNext());
 		}
 		return this;
 	}
@@ -165,13 +159,14 @@ public class SinglyLinkedListDS {
 	 * Method traverses a linked list.
 	 */
 	public void printList() {
-		Node go = this.head;
+		SingularNode go = this.head;
 		System.out.print("[");
-		while (go.nextNode != null) {
-			System.out.print(go.data + " ");
-			go = go.nextNode;
+		while (go.getNext() != null) {
+			System.out.print(go.getData() + " ");
+//			go = go.nextNode;
+			go=go.getNext();
 		}
-		System.out.println(go.data + "]");
+		System.out.println(go.getData() + "]");
 	}
 
 //													SEARCHING
@@ -179,9 +174,10 @@ public class SinglyLinkedListDS {
 		if (this.head == null) {
 			throw new IllegalArgumentException("The list is empty");
 		} else {
-			Node temp = this.head;
-			while (temp != null && temp.data != nodeData) {
-				temp = temp.nextNode;
+			SingularNode temp = this.head;
+			while (temp != null && temp.getData() != nodeData) {
+//				temp = temp.nextNode;
+				temp=temp.getNext();
 			}
 
 			if (temp == null) {
@@ -195,30 +191,4 @@ public class SinglyLinkedListDS {
 	
 //									SORTING
 
-	public static void main(String... args) {
-		SinglyLinkedListDS list = new SinglyLinkedListDS();
-		list.insertNode(12);
-		list.insertNode(24);
-		list.insertNode(48);
-		System.out.print("List before insertions: ");
-		list.printList();
-		System.out.print("Inserting node 6 at the beggining: ");
-		list.insertNodeBegin(6);
-		list.printList();
-		System.out.print("Inserting node 36 after 24: ");
-		list.insertNodeAfter(36, 24);
-		list.printList();
-		System.out.print("Deleting node from the end: ");
-		list.deleteNode();
-		list.printList();
-		System.out.print("Deleting the head of the list: ");
-		list.deleteNodeHead();
-		list.printList();
-		System.out.print("Deleting node after 24: ");
-		list.deleteNodeAfter(24);
-		list.printList();
-		System.out.print("Deleting node after 12: ");
-		list.deleteNodeAfter(12);
-		list.printList();
-	}
 }

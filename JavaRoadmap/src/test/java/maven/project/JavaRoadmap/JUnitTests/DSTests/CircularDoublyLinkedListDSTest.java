@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
-import maven.project.JavaRoadmap.dsa.linearDS.CircularDoublyLinkedListDS;
+import maven.project.JavaRoadmap.dsa.linearDS.linkedList.CircularDoublyLinkedListDS;
 
 class CircularDoublyLinkedListDSTest {
 
@@ -21,8 +21,10 @@ class CircularDoublyLinkedListDSTest {
 		
 		assertEquals(10, list.getHead().getData());
 		assertEquals(20, list.getTail().getData());
-		assertEquals(10, list.getNext(list.getTail()).getData());
-		assertEquals(20, list.getPrevious(list.getHead()).getData());
+//		assertEquals(10, list.getNext(list.getTail()).getData());
+		assertEquals(10, list.getTail().getNext().getData());
+//		assertEquals(20, list.getPrevious(list.getHead()).getData());
+		assertEquals(20, list.getHead().getPrevious().getData());
 	}
 	
 	@Test 
@@ -36,9 +38,12 @@ class CircularDoublyLinkedListDSTest {
 		list.printList();
 		
 		assertEquals(5, list.getHead().getData());
-		assertEquals(10, list.getNext(list.getHead()).getData());
-		assertEquals(20, list.getPrevious(list.getHead()).getData());
-		assertEquals(5, list.getNext(list.getTail()).getData());
+//		assertEquals(10, list.getNext(list.getHead()).getData());
+		assertEquals(10, list.getHead().getNext().getData());
+//		assertEquals(20, list.getPrevious(list.getHead()).getData());
+		assertEquals(20, list.getHead().getPrevious().getData());
+//		assertEquals(5, list.getNext(list.getTail()).getData());
+		assertEquals(5, list.getTail().getNext().getData());
 	}
 	
 	@Test
@@ -51,14 +56,18 @@ class CircularDoublyLinkedListDSTest {
 		list.printList();
 		
 		assertEquals(20, list.getTail().getData());
-		assertEquals(10, list.getNext(list.getTail()).getData());
-		assertEquals(15, list.getPrevious(list.getTail()).getData());
+//		assertEquals(10, list.getNext(list.getTail()).getData());
+		assertEquals(10, list.getTail().getNext().getData());
+//		assertEquals(15, list.getPrevious(list.getTail()).getData());
+		assertEquals(15, list.getTail().getPrevious().getData());
 		
 		list.insertAfter(10, 12);
 		list.printList();
 		
-		assertEquals(12, list.getNext(list.getHead()).getData());
-		assertEquals(10, list.getPrevious(list.getNext(list.getHead())).getData());
+//		assertEquals(12, list.getNext(list.getHead()).getData());
+		assertEquals(12, list.getHead().getNext().getData());
+//		assertEquals(10, list.getPrevious(list.getNext(list.getHead())).getData());
+		assertEquals(10, list.getHead().getNext().getPrevious().getData());
 	}
 	
 	@Test
@@ -71,8 +80,10 @@ class CircularDoublyLinkedListDSTest {
 		list.deleteNode();
 		
 		assertEquals(15, list.getTail().getData());
-		assertEquals(10, list.getNext(list.getTail()).getData());
-		assertEquals(15,list.getNext(list.getHead()).getData());
+//		assertEquals(10, list.getNext(list.getTail()).getData());
+		assertEquals(10, list.getTail().getNext().getData());
+//		assertEquals(15,list.getNext(list.getHead()).getData());
+		assertEquals(15, list.getHead().getNext().getData());
 	}
 	
 	@Test
@@ -85,8 +96,10 @@ class CircularDoublyLinkedListDSTest {
 		list.deleteHead();
 		
 		assertEquals(15, list.getHead().getData());
-		assertEquals(15, list.getPrevious(list.getTail()).getData());
-		assertEquals(20, list.getPrevious(list.getHead()).getData());
+//		assertEquals(15, list.getPrevious(list.getTail()).getData());
+		assertEquals(15, list.getTail().getPrevious().getData());
+//		assertEquals(20, list.getPrevious(list.getHead()).getData());
+		assertEquals(20, list.getHead().getPrevious().getData());
 	}
 	
 	@Test
@@ -98,8 +111,10 @@ class CircularDoublyLinkedListDSTest {
 		
 		list.deleteAfter(10);
 		
-		assertEquals(20, list.getNext(list.getHead()).getData());
-		assertEquals(10, list.getPrevious(list.getTail()).getData());
+//		assertEquals(20, list.getNext(list.getHead()).getData());
+		assertEquals(20, list.getHead().getNext().getData());
+//		assertEquals(10, list.getPrevious(list.getTail()).getData());
+		assertEquals(10, list.getTail().getPrevious().getData());
 	}
 	
 	@Test
