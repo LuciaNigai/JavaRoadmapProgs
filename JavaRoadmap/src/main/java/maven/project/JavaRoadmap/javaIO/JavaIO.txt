@@ -5,7 +5,7 @@ Stream -> is a sequence of data. Stream is composed
 of bytes.
 
 System.out: standard output stream
-System.in: standard output stream
+System.in: standard input stream
 System.err: standard error stream
 
 Output stream -> Java application uses output stream

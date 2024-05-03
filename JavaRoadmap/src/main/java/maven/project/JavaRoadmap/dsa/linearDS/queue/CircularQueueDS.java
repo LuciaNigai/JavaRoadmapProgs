@@ -79,7 +79,7 @@ public class CircularQueueDS {
 	}
 	
 	public boolean isEmpty() {
-		return front==null ? true : false;
+		return front==null;
 	}
 
 	public void display() {

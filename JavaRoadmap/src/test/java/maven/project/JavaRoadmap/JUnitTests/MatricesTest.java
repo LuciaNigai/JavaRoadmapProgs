@@ -108,7 +108,7 @@ class MatricesTest {
             MatricesEqualityCheck.checkMatricesEquality(matrix1, matrix2);
             fail("Expected ArithmeticException was not thrown");
         } catch (ArithmeticException e) {
-            assertEquals("The matrix should have the same dimensions", e.getMessage());
+            assertEquals("The matrices should have the same dimensions", e.getMessage());
         }
     }
     

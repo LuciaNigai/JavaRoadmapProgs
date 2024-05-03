@@ -26,7 +26,7 @@ public class SimpleQueueDS {
 	 * @return True if stack is empty, false otherwise.
 	 */
 	public boolean isEmpty() {
-		return head==null ? true : false;
+		return head==null;
 	}
 	
 	/**
