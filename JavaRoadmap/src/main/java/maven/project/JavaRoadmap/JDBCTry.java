@@ -8,7 +8,7 @@ public class JDBCTry {
 	public static void main(String... s) {
 		try {
 			Connection conn = null;
-			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/freedb_carsrent","root", "");
+			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/freedb_carsrent","root", "HelloAdmin23");
 			Statement stmt =conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from user");
 			while(rs.next()) {
@@ -23,7 +23,7 @@ public class JDBCTry {
 	
 		try {
 			Connection conn = null;
-			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/freedb_carsrent","root", "");
+			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/freedb_carsrent","root", "HelloAdmin23");
 			
 			String sql = "INSERT INTO user (user_role_id,first_name, last_name, password, email, phone) VALUES ((select user_role_id from user_roles where user_role='Guest'), ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStatement = conn.prepareStatement(sql);

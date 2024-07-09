@@ -2,96 +2,84 @@ package maven.project.JavaRoadmap;
 
 import java.util.Arrays;
 
-/**
- * Hello world!
- *
- */
 public class App {
 	public static void main(String[] args) {
-		System.out.println("Hello" + 5 + 6);
-		System.out.println("Hello" + (5 + 6));
-
-		int[] a = new int[] { 1, 2, 3, 4, 5 };
-		int[] b = a;
-		b[0] = 0;
-		System.out.println(Arrays.toString(a));
-		b = a.clone();
-		b[0] = 100;
-		System.out.println(Arrays.toString(a));
-		System.out.println(Arrays.toString(b));
-		System.out.println(sumOddN(4));
-		System.out.println(sumSquare(3));
-		System.out.println(numberVowels("Hello my friend"));
-		System.out.println("Hello! How are you?".replaceAll("[\\p{Punct}]", ""));
-		System.out.println(correctArithmeticFormula(3, 5, 8));
-		System.out.println(PairIsEven(new int[] {1,2,5,7,9}));
-		System.out.println(distrinctFloat(new float[] {1.0f,2.0f,3.0f,4.0f,2.0f}));
+		int[] array = { 666, 42, 2, 4, 6, 888, 23, 24, 55, 644 };
+		mergeSort(array);
+		System.out.println(Arrays.toString(array));
+		String[] strings = { "hey", "hello", "blueberry", "strawberry", "beauty" };
+		threeSttrings(strings);
 		
-		String string = "Hello friend";
-		System.out.println(string.substring(4, 8));
-		
-
 	}
 
-	public static int sumOddN(int n) {
-		if (n <= 0) {
-			return 0;
+//	MERGE SORT
+	public static void mergeSort(int[] inputArray) {
+		int inputLength = inputArray.length;
+
+		if (inputLength < 2) {
+			return;
 		}
-		if (n == 1) {
-			return 1;
+		int midIndex = inputLength / 2;
+		int[] leftHalf = new int[midIndex];
+		int[] rightHalf = new int[inputLength - midIndex];
+
+		for (int i = 0; i < midIndex; i++) {
+			leftHalf[i] = inputArray[i];
 		}
-		if (n % 2 == 0) {
-			// If n is even, skip it and recursively call sumN with n-1
-			return sumOddN(n - 1);
-		} else {
-			// If n is odd, add n and recursively call sumN with n-2
-			return n + sumOddN(n - 2);
+		for (int i = midIndex; i < inputLength; i++) {
+			rightHalf[i - midIndex] = inputArray[i];
+		}
+
+		mergeSort(leftHalf);
+		mergeSort(rightHalf);
+
+		// Merge
+		merge(inputArray, leftHalf, rightHalf);
+	}
+
+	public static void merge(int[] inputArray, int[] leftHalf, int[] rightHalf) {
+		int leftSize = leftHalf.length;
+		int rightSize = rightHalf.length;
+		int i = 0, j = 0, k = 0;
+		while (i < leftSize && j < rightSize) {
+			if (leftHalf[i] <= rightHalf[j]) {
+				inputArray[k] = leftHalf[i];
+				i++;
+			} else {
+				inputArray[k] = rightHalf[j];
+				j++;
+			}
+			k++;
+		}
+		while (i < leftSize) {
+			inputArray[k] = leftHalf[i];
+			i++;
+			k++;
+		}
+		while (j < rightSize) {
+			inputArray[k] = rightHalf[j];
+			j++;
+			k++;
 		}
 	}
 
-	public static int sumSquare(int n) {
-		if (n <= 0)
-			return 0;
-		return n * n + sumSquare(n - 1);
-	}
+//	QUICK SORT
 
-	public static int numberVowels(String s) {
-		s = s.toLowerCase();
-		int count = 0;
-		for (int i = 0; i < s.length(); i++) {
-			if (s.charAt(i) == 'a' || s.charAt(i) == 'e' || s.charAt(i) == 'i' || s.charAt(i) == 'o'
-					|| s.charAt(i) == 'u')
-				count++;
-		}
-		return count;
-	}
-
-	public static boolean correctArithmeticFormula(int a, int b, int c) {
-		if((a+b==c) || (b-c==a) || (a*b==c)) {
-			return true;
-		}
-		else return false;
-	}
-	
-	public static boolean PairIsEven(int[] arr) {
-		for(int i=0; i<arr.length; i++) {
-			for(int j=i+1; j<arr.length; j++) {
-				if(arr[i]%2==0 || arr[j]%2==0)
-					return true;
+//	3 longest strings
+	public static void threeSttrings(String[] array) {
+		String max1 = "", max2 = "", max3 = "";
+		for (String s : array) {
+			if (s.length() > max1.length()) {
+				max3 = max2;
+				max2 = max1;
+				max1 = s;
+			} else if (s.length() > max2.length()) {
+				max3 = max2;
+				max2 = s;
+			} else if (s.length() > max3.length()) {
+				max3 = s;
 			}
 		}
-		return false;
+		System.out.println("max1= "+max1+" ,max2= "+ max2 + " max3 ="+max3);
 	}
-	
-	public static boolean distrinctFloat(float[] arr) {
-		for(int i=0; i<arr.length; i++) {
-			for(int j=i+1; j<arr.length; j++) {
-				if(arr[i]==arr[j])
-					return false;
-			}
-		}
-		return true;
-	}
-
-
 }
